@@ -1,6 +1,30 @@
 import React from 'react';
+import { useState } from 'react';
 
 const ApplicationForm = () => {
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (e) => {
+    const {id, value} = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }))
+  };
+
+  const handleSelect = (e) => {
+    const {id, selectedOptions} = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: selectedOptions[0].value,
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F5F5F5] to-[#E6F2FF] flex flex-col items-center justify-center p-4">
       <div className="max-w-4xl w-full bg-white rounded-2xl shadow-2xl p-8">
@@ -8,7 +32,7 @@ const ApplicationForm = () => {
           Application Form
         </h1>
 
-        <form className="space-y-8">
+        <form className="space-y-8" onSubmit={handleSubmit}>
           {/* Personal Information Section */}
           <div>
             <h2 className="text-xl font-semibold text-[#0077BE] mb-4">
@@ -27,6 +51,7 @@ const ApplicationForm = () => {
                   id="fullName"
                   name="fullName"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -42,6 +67,7 @@ const ApplicationForm = () => {
                   id="age"
                   name="age"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -57,6 +83,7 @@ const ApplicationForm = () => {
                   id="streetAddress"
                   name="streetAddress"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -72,6 +99,7 @@ const ApplicationForm = () => {
                   id="email"
                   name="email"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -87,6 +115,7 @@ const ApplicationForm = () => {
                   id="phoneNumber"
                   name="phoneNumber"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -102,6 +131,7 @@ const ApplicationForm = () => {
                   id="nationalId"
                   name="nationalId"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -126,6 +156,7 @@ const ApplicationForm = () => {
                   id="positionAppliedFor"
                   name="positionAppliedFor"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -141,6 +172,7 @@ const ApplicationForm = () => {
                   id="nationality"
                   name="nationality"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -164,8 +196,10 @@ const ApplicationForm = () => {
                   id="previousEmployment"
                   name="previousEmployment"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleSelect}
                   required
                 >
+                  <option value="**">select an option</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
@@ -181,8 +215,10 @@ const ApplicationForm = () => {
                   id="felonyConviction"
                   name="felonyConviction"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleSelect}
                   required
                 >
+                  <option value="**">select an option</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
@@ -198,8 +234,10 @@ const ApplicationForm = () => {
                   id="rotationalShifts"
                   name="rotationalShifts"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleSelect}
                   required
                 >
+                  <option value="**">select an option</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
@@ -225,6 +263,7 @@ const ApplicationForm = () => {
                   id="college"
                   name="college"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -239,8 +278,10 @@ const ApplicationForm = () => {
                   id="graduationStatus"
                   name="graduationStatus"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleSelect}
                   required
                 >
+                  <option value="**">select an option</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
@@ -266,6 +307,7 @@ const ApplicationForm = () => {
                   id="companyName"
                   name="companyName"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -280,6 +322,7 @@ const ApplicationForm = () => {
                   id="jobTitle"
                   name="jobTitle"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-span-2">
@@ -293,6 +336,7 @@ const ApplicationForm = () => {
                   id="responsibilities"
                   name="responsibilities"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <div>
@@ -307,6 +351,7 @@ const ApplicationForm = () => {
                   id="employmentDuration"
                   name="employmentDuration"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-span-2">
@@ -320,6 +365,7 @@ const ApplicationForm = () => {
                   id="reasonForLeaving"
                   name="reasonForLeaving"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                 ></textarea>
               </div>
             </div>
@@ -342,7 +388,9 @@ const ApplicationForm = () => {
                   id="militaryService"
                   name="militaryService"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleSelect}
                 >
+                  <option value="**">select an option</option>
                   <option value="completed">Completed</option>
                   <option value="exempted">Exempted</option>
                   <option value="postponed">Postponed</option>
@@ -368,6 +416,7 @@ const ApplicationForm = () => {
                   id="personalRecommendation"
                   name="personalRecommendation"
                   className="w-full border-2 border-[#0077BE]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#0077BE]"
+                  onChange={handleChange}
                 ></textarea>
               </div>
             </div>

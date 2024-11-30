@@ -1,6 +1,30 @@
 import React from 'react';
+import { useState } from 'react';
 
 const EnglishAssessment = () => {
+  const [formData, setFormData] = useState({});
+
+  const handleChange = (e) => {
+    const {id, value} = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }))
+  };
+
+  const handleSelect = (e) => {
+    const {name, selectedOptions} = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: selectedOptions[0].value,
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-blue-50 flex flex-col items-center justify-center p-6">
       <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg p-8">
@@ -8,7 +32,7 @@ const EnglishAssessment = () => {
           English Assessment
         </h1>
 
-        <form className="space-y-8">
+        <form className="space-y-8" onSubmit={handleSubmit}>
           {/* Personal Information Section */}
           <div>
             <h2 className="text-xl font-semibold text-blue-600 mb-4">
@@ -28,6 +52,7 @@ const EnglishAssessment = () => {
                   name="name"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -43,6 +68,7 @@ const EnglishAssessment = () => {
                   name="phoneNumber"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -59,10 +85,12 @@ const EnglishAssessment = () => {
                   Which sentence is grammatically correct? *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="grammaticalCorrectness"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="heDontKnow">He don’t know the answer.</option>
                   <option value="heDoesntKnow">
                     He doesn’t know the answer.
@@ -79,10 +107,12 @@ const EnglishAssessment = () => {
                   started, they ___ the report." *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="verbForm"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="complete">complete</option>
                   <option value="haveCompleted">have completed</option>
                   <option value="hadCompleted">had completed</option>
@@ -95,10 +125,12 @@ const EnglishAssessment = () => {
                   the customer." *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="errorIdentification"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="incorrectUseOfWere">
                     Incorrect use of "were"
                   </option>
@@ -115,10 +147,12 @@ const EnglishAssessment = () => {
                   feedback was ___ and helped us improve our process." *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="wordCompletion"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="irrelevant">irrelevant</option>
                   <option value="invaluable">invaluable</option>
                   <option value="insufficient">insufficient</option>
@@ -130,10 +164,12 @@ const EnglishAssessment = () => {
                   Select the best synonym for "escalate": *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="synonymForEscalate"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="diminish">Diminish</option>
                   <option value="intensify">Intensify</option>
                   <option value="resolve">Resolve</option>
@@ -146,10 +182,12 @@ const EnglishAssessment = () => {
                   known for her meticulous attention to detail." *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="meticulousMeaning"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="carefulAndPrecise">Careful and precise</option>
                   <option value="quickAndCareless">Quick and careless</option>
                   <option value="rigidAndInflexible">
@@ -182,10 +220,12 @@ const EnglishAssessment = () => {
                   in the passage? *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="negativeEffect"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="increasedEfficiency">
                     Increased efficiency
                   </option>
@@ -203,10 +243,12 @@ const EnglishAssessment = () => {
                   What is the overall tone of the passage? *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="toneOfPassage"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="optimistic">Optimistic</option>
                   <option value="neutral">Neutral</option>
                   <option value="pessimistic">Pessimistic</option>
@@ -218,10 +260,12 @@ const EnglishAssessment = () => {
                   What is implied about the future workforce? *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="futureWorkforce"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="automationReplacesJobs">
                     Automation will replace all jobs.
                   </option>
@@ -250,10 +294,12 @@ const EnglishAssessment = () => {
                   Which of the following is NOT a synonym for "happy"? *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="notSynonymForHappy"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="content">Content</option>
                   <option value="joyful">Joyful</option>
                   <option value="melancholy">Melancholy</option>
@@ -265,10 +311,12 @@ const EnglishAssessment = () => {
                   Which word is spelled correctly? *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="spelling"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="definate">Definate</option>
                   <option value="separate">Separate</option>
                   <option value="neccessary">Neccessary</option>
@@ -290,10 +338,12 @@ const EnglishAssessment = () => {
                   to understand? *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="customerSpeaksTooQuickly"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="pleaseSlowDown">
                     "Please slow down; I want to ensure I understand you
                     correctly."
@@ -312,10 +362,12 @@ const EnglishAssessment = () => {
                   What does "escalating an issue" mean in a call center? *
                 </label>
                 <select
+                  onChange={handleSelect}
                   name="escalatingIssue"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
                 >
+                  <option value="**">select an answer</option>
                   <option value="transferringCall">
                     Transferring the call to a higher authority
                   </option>
@@ -347,6 +399,7 @@ const EnglishAssessment = () => {
                   name="prioritizeSentence"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <div>
@@ -358,6 +411,7 @@ const EnglishAssessment = () => {
                   name="challengingTask"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <div>
@@ -369,6 +423,7 @@ const EnglishAssessment = () => {
                   name="rewriteSentence"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <div>
@@ -380,6 +435,7 @@ const EnglishAssessment = () => {
                   name="teamworkImportance"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
+                  onChange={handleChange}
                 ></textarea>
               </div>
               <div>
@@ -392,6 +448,7 @@ const EnglishAssessment = () => {
                   name="crossLanguageCommunication"
                   required
                   className="w-full border border-gray-300 rounded-lg p-2"
+                  onChange={handleChange}
                 ></textarea>
               </div>
             </div>
