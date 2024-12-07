@@ -23,6 +23,20 @@ const ApplicationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    fetch('http://localhost:5000/application', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(response => response.json()) // Parse the response body as JSON
+    .then(data => {
+      console.log(data); // Handle the data returned from the API
+    })
+    .catch(error => {
+      console.error('Error:', error); // Handle any errors
+    });
   }
 
   return (
